@@ -41,7 +41,16 @@ export default function CoupleSection() {
             className="flex flex-col text-center px-4 group"
           >
             <div className="w-full aspect-[3/4] max-w-sm mx-auto overflow-hidden rounded-sm relative shadow-md">
-              <img src={groomImage} alt="Mempelai Pria" loading="lazy" className="w-full h-full object-cover grayscale opacity-90 transition-all duration-[2s] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100" />
+              <motion.img 
+                src={groomImage} 
+                alt="Mempelai Pria" 
+                loading="lazy" 
+                initial={{ filter: 'grayscale(100%)', scale: 1.05 }}
+                whileInView={{ filter: 'grayscale(0%)', scale: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 2.5, delay: 0.4, ease: "easeOut" }}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" 
+              />
             </div>
             <div className="mt-8">
               <h3 className="text-3xl font-heading text-wedding-gray mb-2">{groom.name}</h3>
@@ -59,7 +68,16 @@ export default function CoupleSection() {
             className="flex flex-col text-center px-4 group"
           >
             <div className="w-full aspect-[3/4] max-w-sm mx-auto overflow-hidden rounded-sm relative shadow-md">
-              <img src={brideImage} alt="Mempelai Wanita" loading="lazy" className="w-full h-full object-cover grayscale opacity-90 transition-all duration-[2s] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100" />
+              <motion.img 
+                src={brideImage} 
+                alt="Mempelai Wanita" 
+                loading="lazy" 
+                initial={{ filter: 'grayscale(100%)', scale: 1.05 }}
+                whileInView={{ filter: 'grayscale(0%)', scale: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 2.5, delay: 0.4, ease: "easeOut" }}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" 
+              />
             </div>
             <div className="mt-8">
               <h3 className="text-3xl font-heading text-wedding-gray mb-2">{bride.name}</h3>

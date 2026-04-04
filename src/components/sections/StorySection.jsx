@@ -14,7 +14,16 @@ export default function StorySection() {
             transition={{ duration: 0.8 }}
             className="w-full h-[60vh] md:h-[80vh] relative rounded-sm overflow-hidden"
           >
-             <img src={heroImage} alt="Kisah Kami" loading="lazy" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-[2s]" />
+             <motion.img 
+               src={heroImage} 
+               alt="Kisah Kami" 
+               loading="lazy" 
+               initial={{ filter: 'grayscale(100%)', scale: 1.05 }}
+               whileInView={{ filter: 'grayscale(0%)', scale: 1 }}
+               viewport={{ once: true, margin: "-100px" }}
+               transition={{ duration: 2.5, delay: 0.4, ease: "easeOut" }}
+               className="w-full h-full object-cover hover:scale-105 transition-transform duration-[2s]" 
+             />
              <div className="absolute inset-0 border border-wedding-white/20 m-4 pointer-events-none mix-blend-overlay"></div>
           </motion.div>
 
