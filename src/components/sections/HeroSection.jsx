@@ -8,7 +8,7 @@ export default function HeroSection() {
   const y = useTransform(scrollY, [0, 1000], [0, 150]);
 
   return (
-    <section id="home" className="relative h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-wedding-gray">
+    <section id="home" className="relative h-[100vh] w-full flex items-center justify-center overflow-hidden bg-wedding-gray">
       {/* Background Image with subtle parallax & load zoom */}
       <motion.div
         style={{ y }}
