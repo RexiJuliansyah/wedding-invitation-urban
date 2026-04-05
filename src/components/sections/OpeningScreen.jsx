@@ -28,25 +28,43 @@ export default function OpeningScreen({ guestName, onOpen }) {
         transition={{ duration: 1, delay: 0.2 }}
         className="relative z-10 flex flex-col items-center p-8 max-w-md mx-auto"
       >
-        <p className="text-xs md:text-sm tracking-[0.3em] uppercase mb-4 text-wedding-white/80 font-medium">The Wedding Of</p>
-        <h1 className="font-heading text-6xl md:text-7xl text-wedding-white mb-6 leading-tight drop-shadow-md">
-          Rama <span className="text-wedding-white/70 italic font-light font-heading text-5xl md:text-6xl mx-1">&amp;</span> Shinta
+        {/* Decorative line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.5, delay: 0.5 }}
+          className="w-20 h-[1px] bg-wedding-white/40 mb-6"
+        />
+        
+        <p className="text-xs tracking-[0.3em] uppercase mb-4 text-wedding-white/80 font-medium">The Wedding Of</p>
+        <h1 className="font-heading text-5xl text-wedding-white mb-6 leading-tight drop-shadow-md">
+          Rama <span className="text-wedding-white/70 italic font-light font-heading text-4xl mx-1">&amp;</span> Shinta
         </h1>
 
-        <div className="my-8 mb-12">
+        <div className="my-6 mb-10">
           <p className="text-sm mb-2 text-wedding-white/80 font-light">Kepada Yth.</p>
-          <h2 className="text-2xl md:text-3xl font-heading text-wedding-white border-b border-wedding-white/50 inline-block pb-1 min-w-[200px]">
+          <h2 className="text-2xl font-heading text-wedding-white border-b border-wedding-white/50 inline-block pb-1 min-w-[200px]">
             {guestName || 'Tamu Undangan'}
           </h2>
         </div>
 
-        <button
+        <motion.button
           onClick={onOpen}
-          className="group relative inline-flex items-center justify-center px-8 py-3 bg-wedding-blue text-wedding-white rounded-full overflow-hidden transition-all duration-300 active:scale-95 shadow-lg border border-wedding-blue-light/30 hover:bg-wedding-blue-dark hover:shadow-xl"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          className="group relative inline-flex items-center justify-center px-8 py-3.5 bg-wedding-blue text-wedding-white rounded-full overflow-hidden transition-all duration-300 shadow-lg border border-wedding-blue-light/30 hover:bg-wedding-blue-dark hover:shadow-xl"
         >
           <MailOpen className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform duration-300" />
           <span className="text-sm tracking-widest uppercase font-medium">Buka Undangan</span>
-        </button>
+        </motion.button>
+
+        {/* Decorative line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.5, delay: 0.8 }}
+          className="w-20 h-[1px] bg-wedding-white/40 mt-10"
+        />
       </motion.div>
     </motion.div>
   );

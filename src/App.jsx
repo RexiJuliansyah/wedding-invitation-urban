@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import OpeningScreen from './components/sections/OpeningScreen';
 import HeroSection from './components/sections/HeroSection';
@@ -23,6 +23,7 @@ function App() {
   const [guestName, setGuestName] = useState('');
   const audioRef = useRef(null);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -42,38 +43,48 @@ function App() {
   };
 
   return (
+    <div className="min-h-screen bg-gray-100 flex justify-center w-full font-sans">
+      {/* Mobile Wrapper for Desktop */}
+      <div
+        ref={containerRef}
+        className="w-full max-w-[500px] min-h-screen relative shadow-2xl overflow-x-hidden bg-wedding-white"
+      >
+        <audio ref={audioRef} src="/music.m4a" loop />
+        <FloatingParticles />
 
-    <main className="w-full min-h-[100dvh] bg-wedding-white relative overflow-x-hidden">
-      <audio ref={audioRef} src="/music.m4a" loop />
-      <FloatingParticles />
+        <AnimatePresence>
+          {!isOpen && (
+            <OpeningScreen guestName={guestName} onOpen={handleOpen} />
+          )}
+        </AnimatePresence>
 
-      <AnimatePresence>
-        {!isOpen && (
-          <OpeningScreen guestName={guestName} onOpen={handleOpen} />
+        {isOpen && (
+          <>
+            <MusicPlayer audioRef={audioRef} isPlaying={isMusicPlaying} setIsPlaying={setIsMusicPlaying} containerRef={containerRef} />
+            <NavigationBar containerRef={containerRef} />
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative z-0 scroll-smooth pb-24"
+            >
+              <HeroSection />
+              <PrayerSection />
+              <CoupleSection />
+              <EventDetails />
+              <CountdownSection />
+              <StorySection />
+              <GallerySection />
+              <GiftSection />
+              <RSVPSection />
+              <WishesSection />
+              <ClosingSection />
+            </motion.div>
+          </>
         )}
-      </AnimatePresence>
-
-      {isOpen && (
-        <>
-          <MusicPlayer audioRef={audioRef} isPlaying={isMusicPlaying} setIsPlaying={setIsMusicPlaying} />
-          <NavigationBar />
-
-          <div className="relative z-0 scroll-smooth pb-20 md:pb-0">
-            <HeroSection />
-            <PrayerSection />
-            <CoupleSection />
-            <EventDetails />
-            <CountdownSection />
-            <StorySection />
-            <GallerySection />
-            <GiftSection />
-            <RSVPSection />
-            <WishesSection />
-            <ClosingSection />
-          </div>
-        </>
-      )}
-    </main>
+      </div>
+    </div>
   );
 }
 

@@ -6,18 +6,50 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
-    @apply bg-wedding-white text-wedding-gray font-body antialiased;
+    @apply bg-gray-100 text-wedding-gray font-body antialiased;
+    /* Premium desktop background */
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading text-wedding-gray font-medium;
+  }
+
+  /* Custom scrollbar for the mobile container */
+  ::-webkit-scrollbar {
+    width: 0px;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* Section transition shimmer effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Premium section divider animation */
+@keyframes pulse-line {
+  0%, 100% { opacity: 0.3; transform: scaleX(0.5); }
+  50% { opacity: 0.8; transform: scaleX(1); }
+}
+
+/* Smooth fade-in for sections */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

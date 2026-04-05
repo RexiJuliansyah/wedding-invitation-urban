@@ -40,9 +40,9 @@ export default function CountdownSection() {
   ];
 
   return (
-    <section className="w-full py-20 bg-wedding-white flex justify-center items-center">
-      <div className="max-w-4xl mx-auto px-6 text-center w-full">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+    <section className="w-full py-14 bg-wedding-white flex justify-center items-center">
+      <div className="w-full px-5 text-center">
+        <div className="grid grid-cols-4 gap-2.5">
           {timeBlocks.map((block, index) => (
             <motion.div
               key={block.label}
@@ -50,12 +50,12 @@ export default function CountdownSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="flex flex-col items-center justify-center p-8 bg-wedding-white-soft border border-wedding-gray/5 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] rounded-sm"
+              className="flex flex-col items-center justify-center py-5 px-2 bg-wedding-white-soft border border-wedding-gray/5 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] rounded-sm"
             >
-              <span className="text-4xl md:text-5xl font-heading text-wedding-gray mb-3">
+              <span className="text-3xl font-heading text-wedding-gray mb-2">
                 {String(block.value).padStart(2, '0')}
               </span>
-              <span className="text-xs tracking-widest uppercase text-wedding-gray/40 font-semibold">
+              <span className="text-[10px] tracking-widest uppercase text-wedding-gray/40 font-semibold">
                 {block.label}
               </span>
             </motion.div>

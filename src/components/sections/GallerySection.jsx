@@ -8,28 +8,28 @@ export default function GallerySection() {
   const images = weddingData.gallery;
 
   return (
-    <section id="gallery" className="w-full py-24 bg-wedding-white relative">
-      <div className="max-w-6xl mx-auto px-6 text-center">
+    <section id="gallery" className="w-full py-16 bg-wedding-white relative">
+      <div className="w-full px-5 text-center">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-16"
+          className="mb-10"
         >
-          <span className="text-xs tracking-[0.3em] uppercase text-wedding-gray/50 mb-4 block">Momen Indah</span>
-          <h2 className="text-4xl md:text-5xl font-heading text-wedding-gray">Galeri Kami</h2>
+          <span className="text-xs tracking-[0.3em] uppercase text-wedding-gray/50 mb-3 block">Momen Indah</span>
+          <h2 className="text-3xl font-heading text-wedding-gray">Galeri Kami</h2>
         </motion.div>
 
-        {/* True Masonry Column Layout */}
-        <div className="columns-2 md:columns-3 gap-2 md:gap-4 lg:gap-6 space-y-2 md:space-y-4 lg:space-y-6">
+        {/* 2-column masonry for mobile container */}
+        <div className="columns-2 gap-2 space-y-2">
           {images.map((img, i) => (
             <motion.div
               key={img.id}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
               className="w-full overflow-hidden rounded-sm group relative bg-wedding-gray break-inside-avoid block cursor-pointer"
               onClick={() => setSelectedImage(img)}
             >
@@ -52,10 +52,10 @@ export default function GallerySection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-wedding-gray/95 backdrop-blur-md p-4 md:p-12 cursor-zoom-out"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-wedding-gray/95 backdrop-blur-md p-4 cursor-zoom-out"
           >
-            <button className="absolute top-6 right-6 p-2 text-wedding-white/70 hover:text-wedding-white transition-colors">
-              <X className="w-8 h-8" />
+            <button className="absolute top-6 right-6 p-2 text-wedding-white/70 hover:text-wedding-white transition-colors z-10">
+              <X className="w-7 h-7" />
             </button>
             <motion.img
               initial={{ scale: 0.9, y: 20 }}
@@ -64,7 +64,7 @@ export default function GallerySection() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               src={selectedImage.src}
               alt={selectedImage.alt}
-              className="max-w-full max-h-[90vh] object-contain shadow-2xl rounded-sm cursor-default"
+              className="max-w-full max-h-[85vh] object-contain shadow-2xl rounded-sm cursor-default"
               onClick={(e) => e.stopPropagation()} 
             />
           </motion.div>

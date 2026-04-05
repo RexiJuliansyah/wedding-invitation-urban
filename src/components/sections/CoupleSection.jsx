@@ -9,79 +9,82 @@ export default function CoupleSection() {
   const { groom, bride } = weddingData.couple;
 
   return (
-    <section id="couple" className="w-full py-24 bg-wedding-white overflow-hidden relative">
-      <div className="max-w-6xl mx-auto px-6 relative">
+    <section id="couple" className="w-full py-16 bg-wedding-white overflow-hidden relative">
+      <div className="w-full px-5 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
-          <span className="text-xs tracking-[0.3em] uppercase text-wedding-gray/50 mb-4 block">Mempelai</span>
-          <h2 className="text-4xl md:text-5xl font-heading text-wedding-gray">Rama & Shinta</h2>
+          <span className="text-xs tracking-[0.3em] uppercase text-wedding-gray/50 mb-3 block">Mempelai</span>
+          <h2 className="text-3xl font-heading text-wedding-gray">Rama & Shinta</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8 items-center relative">
+        <div className="flex flex-col gap-10 items-center relative">
 
-          {/* Decorative Divider Line for Desktop */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-wedding-gray/10 -translate-x-1/2"></div>
-
-          {/* Heart Icon for Desktop */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-wedding-white z-10 text-wedding-gray shadow-sm">
-            <Heart className="w-4 h-4 fill-wedding-gray/5" strokeWidth={1} />
-          </div>
+          {/* Heart Divider */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4, type: "spring" }}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-wedding-white z-10 text-wedding-gray shadow-sm border border-wedding-gray/5"
+          >
+            <Heart className="w-3.5 h-3.5 fill-wedding-gray/5" strokeWidth={1} />
+          </motion.div>
 
           {/* Groom */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col text-center px-4 group"
+            className="flex flex-col text-center w-full group"
           >
-            <div className="w-full aspect-[3/4] max-w-sm mx-auto overflow-hidden rounded-sm relative shadow-md">
+            <div className="w-full aspect-[3/4] max-w-[280px] mx-auto overflow-hidden rounded-sm relative shadow-md">
               <motion.img 
                 src={groomImage} 
                 alt="Mempelai Pria" 
                 loading="lazy" 
                 initial={{ filter: 'grayscale(100%)', scale: 1.05 }}
                 whileInView={{ filter: 'grayscale(0%)', scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 2.5, delay: 0.4, ease: "easeOut" }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 2.5, delay: 0.3, ease: "easeOut" }}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" 
               />
             </div>
-            <div className="mt-8">
-              <h3 className="text-3xl font-heading text-wedding-gray mb-2">{groom.name}</h3>
-              <p className="text-sm font-light text-wedding-gray/70 mb-4">Putra Pertama dari<br />{groom.father} & {groom.mother}</p>
+            <div className="mt-6">
+              <h3 className="text-2xl font-heading text-wedding-gray mb-1.5">{groom.name}</h3>
+              <p className="text-xs font-light text-wedding-gray/70 mb-3">Putra Pertama dari<br />{groom.father} & {groom.mother}</p>
               <a href={`https://instagram.com/${groom.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="text-xs tracking-wider uppercase text-wedding-blue hover:text-wedding-blue-dark transition-colors inline-block">{groom.instagram}</a>
             </div>
           </motion.div>
 
           {/* Bride */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col text-center px-4 group"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex flex-col text-center w-full group"
           >
-            <div className="w-full aspect-[3/4] max-w-sm mx-auto overflow-hidden rounded-sm relative shadow-md">
+            <div className="w-full aspect-[3/4] max-w-[280px] mx-auto overflow-hidden rounded-sm relative shadow-md">
               <motion.img 
                 src={brideImage} 
                 alt="Mempelai Wanita" 
                 loading="lazy" 
                 initial={{ filter: 'grayscale(100%)', scale: 1.05 }}
                 whileInView={{ filter: 'grayscale(0%)', scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 2.5, delay: 0.4, ease: "easeOut" }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 2.5, delay: 0.3, ease: "easeOut" }}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" 
               />
             </div>
-            <div className="mt-8">
-              <h3 className="text-3xl font-heading text-wedding-gray mb-2">{bride.name}</h3>
-              <p className="text-sm font-light text-wedding-gray/70 mb-4">Putri Kedua dari<br />{bride.father} & {bride.mother}</p>
+            <div className="mt-6">
+              <h3 className="text-2xl font-heading text-wedding-gray mb-1.5">{bride.name}</h3>
+              <p className="text-xs font-light text-wedding-gray/70 mb-3">Putri Kedua dari<br />{bride.father} & {bride.mother}</p>
               <a href={`https://instagram.com/${bride.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="text-xs tracking-wider uppercase text-wedding-blue hover:text-wedding-blue-dark transition-colors inline-block">{bride.instagram}</a>
             </div>
           </motion.div>

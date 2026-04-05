@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Home, Calendar, Image as ImageIcon, Gift, MessageSquare } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
-export default function NavigationBar() {
+export default function NavigationBar({ containerRef }) {
   const [activeSection, setActiveSection] = useState('#home');
 
   useEffect(() => {
@@ -35,8 +35,8 @@ export default function NavigationBar() {
   ];
 
   return (
-    <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40">
-      <div className="flex items-center gap-1 sm:gap-2 px-4 py-3 rounded-full bg-wedding-gray/80 backdrop-blur-md border border-wedding-white/10 shadow-2xl">
+    <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-full max-w-[460px] px-4">
+      <div className="flex items-center justify-between gap-1 px-3 py-2.5 rounded-full bg-wedding-gray/85 backdrop-blur-md border border-wedding-white/10 shadow-2xl">
         {navItems.map((item, index) => {
           const Icon = item.icon;
           const isActive = activeSection === item.href;
@@ -45,16 +45,16 @@ export default function NavigationBar() {
               key={index}
               href={item.href}
               className={cn(
-                "group relative flex flex-col items-center justify-center w-12 h-12 transition-all duration-300 rounded-full",
+                "group relative flex flex-col items-center justify-center w-11 h-11 transition-all duration-300 rounded-full",
                 isActive ? "scale-105" : "hover:scale-110 active:scale-95"
               )}
             >
               <div className={cn(
-                "absolute inset-0 rounded-full transition-colors duration-300",
+                "absolute inset-0 rounded-full transition-all duration-300",
                 isActive ? "bg-wedding-white shadow-md shadow-black/20" : "bg-transparent group-hover:bg-wedding-white/10"
               )} />
               <Icon className={cn(
-                "w-5 h-5 relative z-10 transition-colors duration-300",
+                "w-[18px] h-[18px] relative z-10 transition-colors duration-300",
                 isActive ? "text-wedding-gray" : "text-wedding-white/80 group-hover:text-wedding-white"
               )} />
             </a>

@@ -1,4 +1,5 @@
 import { Disc3, Pause } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function MusicPlayer({ audioRef, isPlaying, setIsPlaying }) {
   const togglePlay = () => {
@@ -13,17 +14,19 @@ export default function MusicPlayer({ audioRef, isPlaying, setIsPlaying }) {
   };
 
   return (
-    <div className="fixed bottom-24 right-4 md:bottom-8 md:right-8 z-40">
-      <button
+    <div className="fixed bottom-20 right-4 z-40 md:right-auto md:left-1/2 md:translate-x-[200px]">
+      <motion.button
         onClick={togglePlay}
-        className="relative flex items-center justify-center w-12 h-12 rounded-full bg-wedding-gray/80 backdrop-blur-md border border-wedding-white/10 shadow-lg text-wedding-white hover:bg-wedding-gray transition-colors group"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="relative flex items-center justify-center w-11 h-11 rounded-full bg-wedding-gray/80 backdrop-blur-md border border-wedding-white/10 shadow-lg text-wedding-white hover:bg-wedding-gray transition-colors group"
       >
         {isPlaying ? (
-          <Disc3 className="w-6 h-6 animate-spin" style={{ animationDuration: '3s' }} />
+          <Disc3 className="w-5 h-5 animate-spin" style={{ animationDuration: '3s' }} />
         ) : (
-          <Pause className="w-5 h-5 text-wedding-white/60" />
+          <Pause className="w-4 h-4 text-wedding-white/60" />
         )}
-      </button>
+      </motion.button>
     </div>
   );
 }
