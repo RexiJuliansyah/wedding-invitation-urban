@@ -1,15 +1,37 @@
-import { motion } from 'framer-motion';
-import { Copy, Gift } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Copy, Gift, CheckCircle2, CreditCard, MapPin } from 'lucide-react';
 import { useState } from 'react';
 
 export default function GiftSection() {
-  const [copiedBank, setCopiedBank] = useState('');
+  const [copiedId, setCopiedId] = useState(null);
+  const [showAmplop, setShowAmplop] = useState(false);
+  const [showKado, setShowKado] = useState(false);
 
-  const handleCopy = (text, bank) => {
+  const handleCopy = (text, id) => {
     navigator.clipboard.writeText(text);
-    setCopiedBank(bank);
-    setTimeout(() => setCopiedBank(''), 2000);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
   };
+
+  const CopyButton = ({ id, text, label }) => (
+    <motion.button
+      onClick={() => handleCopy(text, id)}
+      whileTap={{ scale: 0.95 }}
+      className="relative overflow-hidden group inline-flex items-center justify-center gap-2 font-body font-semibold tracking-wide text-[12px] rounded-xl px-5 py-2.5 transition-all duration-300 hover:scale-105 active:scale-95"
+      style={{
+        background: 'linear-gradient(135deg, #F8F9FA 0%, #e8ecf0 50%, #F8F9FA 100%)',
+        boxShadow: '0 3px 10px rgba(0,0,0,0.15)',
+        color: '#2C3E50',
+        border: '1px solid rgba(168,185,198,0.3)',
+      }}
+    >
+      <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-wedding-blue/10 skew-x-12 pointer-events-none" />
+      {copiedId === id
+        ? <><CheckCircle2 size={14} className="text-green-600" /> Tersalin</>
+        : <><Copy size={14} /> {label}</>
+      }
+    </motion.button>
+  );
 
   return (
     <section id="gift" className="w-full py-16 bg-wedding-gray text-wedding-white relative overflow-hidden">
@@ -30,88 +52,135 @@ export default function GiftSection() {
           </p>
         </motion.div>
 
-        <div className="flex flex-col gap-5">
-          {/* Card 1: BCA */}
+        <div className="flex flex-col items-center gap-4 w-full max-w-[380px] mx-auto">
+
+          {/* Button Amplop Online */}
+          <motion.button
+            onClick={() => setShowAmplop(!showAmplop)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center justify-center gap-2 px-10 py-3 border border-wedding-white/30 text-wedding-white/80 hover:bg-wedding-white/10 hover:border-wedding-white/50 transition-all duration-300 text-[11px] tracking-[0.35em] uppercase rounded-full font-body"
+          >
+            <CreditCard size={15} /> Amplop Online
+          </motion.button>
+
+          {/* Expandable Amplop Content */}
+          <AnimatePresence>
+            {showAmplop && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="w-full overflow-hidden flex flex-col gap-4 mt-2 mb-2"
+              >
+                {/* Card BRI — Credit Card Style */}
+                <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl p-6 text-center border border-white/10"
+                  style={{
+                    background: 'linear-gradient(135deg, #2C3E50 0%, #1a2a3a 40%, #0f1c2a 100%)',
+                  }}
+                >
+                  {/* Dot pattern overlay */}
+                  <div
+                    className="absolute top-0 left-0 w-full h-full opacity-[0.12] pointer-events-none"
+                    style={{
+                      backgroundImage: 'radial-gradient(circle, rgba(123,149,166,0.8) 10%, transparent 10.01%)',
+                      backgroundSize: '10px 10px',
+                    }}
+                  />
+                  {/* Bank name top-right */}
+                  <h3 className="absolute top-4 right-5 text-white font-bold text-2xl italic tracking-wider font-heading">BRI</h3>
+                  {/* Chip left-center */}
+                  <div className="w-12 h-9 rounded bg-gradient-to-br from-[#7B95A6] to-[#4A6B8C] p-1 flex items-center justify-center absolute left-6 top-1/2 -translate-y-1/2 opacity-90 shadow-inner">
+                    <div className="w-full h-full border border-white/20 rounded-sm" />
+                  </div>
+                  {/* Account details centered */}
+                  <div className="mt-8 mb-4 relative z-10">
+                    <p className="text-white text-xl tracking-[0.2em] font-mono mb-4">0000 0000 000</p>
+                    <CopyButton id="bri" text="00000000000" label="Salin No. Rekening" />
+                  </div>
+                  <p className="text-white font-bold text-sm tracking-wide relative z-10">A/n Nama Mempelai</p>
+                </div>
+
+                {/* Card BCA — Credit Card Style */}
+                <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl p-6 text-center border border-white/10"
+                  style={{
+                    background: 'linear-gradient(135deg, #2C3E50 0%, #1a2a3a 40%, #0f1c2a 100%)',
+                  }}
+                >
+                  {/* Dot pattern overlay */}
+                  <div
+                    className="absolute top-0 left-0 w-full h-full opacity-[0.12] pointer-events-none"
+                    style={{
+                      backgroundImage: 'radial-gradient(circle, rgba(123,149,166,0.8) 10%, transparent 10.01%)',
+                      backgroundSize: '10px 10px',
+                    }}
+                  />
+                  {/* Bank name top-right */}
+                  <h3 className="absolute top-4 right-5 text-white font-bold text-2xl italic tracking-wider font-heading">BCA</h3>
+                  {/* Chip left-center */}
+                  <div className="w-12 h-9 rounded bg-gradient-to-br from-[#7B95A6] to-[#4A6B8C] p-1 flex items-center justify-center absolute left-6 top-1/2 -translate-y-1/2 opacity-90 shadow-inner">
+                    <div className="w-full h-full border border-white/20 rounded-sm" />
+                  </div>
+                  {/* Account details centered */}
+                  <div className="mt-8 mb-4 relative z-10">
+                    <p className="text-white text-xl tracking-[0.2em] font-mono mb-4">0000 0000 000</p>
+                    <CopyButton id="bca" text="00000000000" label="Salin No. Rekening" />
+                  </div>
+                  <p className="text-white font-bold text-sm tracking-wide relative z-10">A/n Nama Mempelai</p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Button Kirim Kado */}
+          <motion.button
+            onClick={() => setShowKado(!showKado)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center justify-center gap-2 px-10 py-3 border border-wedding-white/30 text-wedding-white/80 hover:bg-wedding-white/10 hover:border-wedding-white/50 transition-all duration-300 text-[11px] tracking-[0.35em] uppercase rounded-full font-body"
+          >
+            <Gift size={15} /> Kirim Kado
+          </motion.button>
+
+          {/* Expandable Kado Content */}
+          <AnimatePresence>
+            {showKado && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="w-full overflow-hidden mt-2"
+              >
+                <div
+                  className="w-full rounded-2xl p-6 text-center text-white shadow-xl relative border-2 border-dashed border-white/30"
+                  style={{
+                    background: 'linear-gradient(135deg, #4A6B8C 0%, #3a5a75 100%)',
+                  }}
+                >
+                  <MapPin size={18} className="mx-auto mb-2 opacity-70" />
+                  <p className="text-xs font-medium mb-1">Kediaman Mempelai Wanita</p>
+                  <p className="text-[13px] leading-relaxed mb-6">Jl. Sudimoro No. 5 Kota Pelabuhan Ratu</p>
+                  <CopyButton id="alamat" text="Jl. Sudimoro No. 5 Kota Pelabuhan Ratu" label="Salin Alamat" />
+                  <p className="font-bold text-sm tracking-wide mt-5">A/n Nama Mempelai</p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Bottom Separator */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="relative w-full aspect-[1.7/1] bg-wedding-white rounded-2xl p-5 flex flex-col justify-between shadow-xl overflow-hidden border border-wedding-gray/5"
-          >
-            <div className="absolute inset-0 opacity-5 pointer-events-none">
-              <div className="absolute top-[10%] left-[-20%] w-[70%] h-[80%] rounded-full bg-wedding-gray blur-3xl"></div>
-            </div>
-            
-            <div className="relative z-10 flex justify-end items-start h-7">
-              <div className="flex items-center h-7">
-                <svg viewBox="0 0 100 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-5">
-                   <path d="M 5 25 L 12 5 L 22 5 L 15 25 Z" fill="#003399"/>
-                   <path d="M 18 25 L 25 5 L 35 5 L 28 25 Z" fill="#003399"/>
-                   <text x="38" y="22" fontFamily="Arial, sans-serif" fontWeight="900" fontStyle="italic" fontSize="22" fill="#003399">BCA</text>
-                </svg>
-              </div>
-            </div>
-
-            <div className="relative z-10 text-left mt-auto mb-1.5 text-wedding-gray">
-              <p className="text-lg tracking-[0.15em] font-mono mb-0.5">1234567890</p>
-              <p className="text-xs tracking-widest uppercase font-semibold opacity-80">RAMA WIJAYA</p>
-            </div>
-
-            <div className="relative z-10 flex justify-end">
-              <motion.button
-                onClick={() => handleCopy('1234567890', 'BCA')}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center px-3.5 py-1.5 bg-wedding-gray/10 hover:bg-wedding-gray/20 transition-colors rounded-lg text-xs font-bold text-wedding-gray shadow-sm"
-              >
-                {copiedBank === 'BCA' ? '✓ Tersalin' : (
-                  <><Copy className="w-3 h-3 mr-1.5" /> Copy</>
-                )}
-              </motion.button>
-            </div>
-          </motion.div>
-
-          {/* Card 2: DANA */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative w-full aspect-[1.7/1] bg-wedding-white rounded-2xl p-5 flex flex-col justify-between shadow-xl overflow-hidden border border-wedding-gray/5"
-          >
-            <div className="absolute inset-0 opacity-5 pointer-events-none">
-              <div className="absolute top-[10%] left-[-20%] w-[70%] h-[80%] rounded-full bg-wedding-gray blur-3xl"></div>
-            </div>
-            
-            <div className="relative z-10 flex justify-end items-start h-7">
-              <div className="flex items-center h-7">
-                <svg viewBox="0 0 100 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-5">
-                   <circle cx="15" cy="15" r="14" fill="#118EEA"/>
-                   <path d="M 11 9 L 11 21 L 14.5 21 C 18 21 21 18.5 21 15 C 21 11.5 18 9 14.5 9 Z" fill="white"/>
-                   <text x="35" y="21" fontFamily="Arial, sans-serif" fontWeight="900" fontSize="18" fill="#118EEA" letterSpacing="1">DANA</text>
-                </svg>
-              </div>
-            </div>
-
-            <div className="relative z-10 text-left mt-auto mb-1.5 text-wedding-gray">
-              <p className="text-lg tracking-[0.15em] font-mono mb-0.5">081234567890</p>
-              <p className="text-xs tracking-widest uppercase font-semibold opacity-80">SHINTA DEWI</p>
-            </div>
-
-            <div className="relative z-10 flex justify-end">
-              <motion.button
-                onClick={() => handleCopy('081234567890', 'DANA')}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center px-3.5 py-1.5 bg-wedding-gray/10 hover:bg-wedding-gray/20 transition-colors rounded-lg text-xs font-bold text-wedding-gray shadow-sm"
-              >
-                {copiedBank === 'DANA' ? '✓ Tersalin' : (
-                  <><Copy className="w-3 h-3 mr-1.5" /> Copy</>
-                )}
-              </motion.button>
-            </div>
-          </motion.div>
+            transition={{ duration: 1 }}
+            className="w-20 h-px mt-6"
+            style={{
+              background: 'linear-gradient(90deg, transparent, #7B95A6, transparent)',
+            }}
+          />
         </div>
       </div>
     </section>
   );
 }
+

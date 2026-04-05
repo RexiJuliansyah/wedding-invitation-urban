@@ -13,6 +13,7 @@ import GiftSection from './components/sections/GiftSection';
 import RSVPSection from './components/sections/RSVPSection';
 import WishesSection from './components/sections/WishesSection';
 import ClosingSection from './components/sections/ClosingSection';
+import BrandedFooter from './components/UI/BrandedFooter';
 
 import FloatingParticles from './components/UI/FloatingParticles';
 import MusicPlayer from './components/UI/MusicPlayer';
@@ -67,7 +68,7 @@ function App() {
               initial={{ opacity: 0, scale: 1.02 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.8, ease: [0.77, 0, 0.175, 1], delay: 0.1 }}
-              className="relative z-0 scroll-smooth pb-24"
+              className="relative z-0 scroll-smooth"
             >
               <HeroSection />
               <PrayerSection />
@@ -80,6 +81,7 @@ function App() {
               <RSVPSection />
               <WishesSection />
               <ClosingSection />
+              <BrandedFooter />
             </motion.div>
           </>
         )}

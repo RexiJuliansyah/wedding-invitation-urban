@@ -24,17 +24,6 @@ export default function CoupleSection() {
 
         <div className="flex flex-col gap-10 items-center relative">
 
-          {/* Heart Divider */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4, type: "spring" }}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-wedding-white z-10 text-wedding-gray shadow-sm border border-wedding-gray/5"
-          >
-            <Heart className="w-3.5 h-3.5 fill-wedding-gray/5" strokeWidth={1} />
-          </motion.div>
-
           {/* Groom */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -44,15 +33,15 @@ export default function CoupleSection() {
             className="flex flex-col text-center w-full group"
           >
             <div className="w-full aspect-[3/4] max-w-[280px] mx-auto overflow-hidden rounded-sm relative shadow-md">
-              <motion.img 
-                src={groomImage} 
-                alt="Mempelai Pria" 
-                loading="lazy" 
+              <motion.img
+                src={groomImage}
+                alt="Mempelai Pria"
+                loading="lazy"
                 initial={{ filter: 'grayscale(100%)', scale: 1.05 }}
                 whileInView={{ filter: 'grayscale(0%)', scale: 1 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 2.5, delay: 0.3, ease: "easeOut" }}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
               />
             </div>
             <div className="mt-6">
@@ -71,15 +60,15 @@ export default function CoupleSection() {
             className="flex flex-col text-center w-full group"
           >
             <div className="w-full aspect-[3/4] max-w-[280px] mx-auto overflow-hidden rounded-sm relative shadow-md">
-              <motion.img 
-                src={brideImage} 
-                alt="Mempelai Wanita" 
-                loading="lazy" 
+              <motion.img
+                src={brideImage}
+                alt="Mempelai Wanita"
+                loading="lazy"
                 initial={{ filter: 'grayscale(100%)', scale: 1.05 }}
                 whileInView={{ filter: 'grayscale(0%)', scale: 1 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 2.5, delay: 0.3, ease: "easeOut" }}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
               />
             </div>
             <div className="mt-6">

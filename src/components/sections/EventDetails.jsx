@@ -77,7 +77,7 @@ export default function EventDetails() {
             target="_blank"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center justify-center px-8 py-3.5 border border-wedding-blue text-wedding-blue hover:bg-wedding-blue hover:text-wedding-white transition-colors text-xs tracking-[0.2em] uppercase rounded-full"
+            className="inline-flex items-center justify-center px-10 py-3 border border-wedding-white/30 text-wedding-white/80 hover:bg-wedding-white/10 hover:border-wedding-white/50 transition-all duration-300 text-[11px] tracking-[0.35em] uppercase rounded-full font-body"
           >
             Lihat Lokasi
           </motion.a>
