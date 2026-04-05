@@ -6,10 +6,12 @@ export default function OpeningScreen({ guestName, onOpen }) {
   return (
     <motion.div
       key="opening-screen"
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0, y: '-100%' }}
-      transition={{ duration: 1.2, ease: [0.83, 0, 0.39, 1] }}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center text-center overflow-hidden bg-wedding-gray"
+      initial={{ opacity: 1, x: '-50%' }}
+      animate={{ x: '-50%' }}
+      exit={{ y: '-100%', x: '-50%', opacity: 1 }}
+      transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1] }}
+      style={{ touchAction: 'none', backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+      className="fixed inset-y-0 left-1/2 w-full max-w-[500px] z-50 flex flex-col items-center justify-center text-center overflow-hidden bg-wedding-gray will-change-transform"
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
@@ -25,7 +27,8 @@ export default function OpeningScreen({ guestName, onOpen }) {
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1, delay: 0.2 }}
+        exit={{ opacity: 0, y: -20, scale: 0.95 }}
+        transition={{ duration: 0.8, ease: "easeIn" }}
         className="relative z-10 flex flex-col items-center p-8 max-w-md mx-auto"
       >
         {/* Decorative line */}

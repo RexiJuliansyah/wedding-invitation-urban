@@ -64,9 +64,9 @@ function App() {
             <NavigationBar containerRef={containerRef} />
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.8, ease: [0.77, 0, 0.175, 1], delay: 0.1 }}
               className="relative z-0 scroll-smooth pb-24"
             >
               <HeroSection />
